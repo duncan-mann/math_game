@@ -6,8 +6,8 @@ class CPU
     attr_accessor :current_player
     
     def initialize()
-        @P1 = Player.new('P1')
-        @P2 = Player.new('P2')
+        @P1 = Player.new('Player 1')
+        @P2 = Player.new('Player 2')
         @current_player = @P1
     end
 
@@ -34,15 +34,39 @@ class CPU
         puts "----NEW TURN----"
     end
 
+    def play()
+        while @P1.score > 0 && @P2.score >0
+            puts "#{current_player.name}:" 
+            ask_question
+            set_current_player
+        end
+
+        if @P1.score === 0
+            winner = @P2
+        else
+            winner = @P1
+        end
+
+        puts "#{winner.name} wins with a score of #{winner.score}/3"
+        puts "----GAME OVER----"
+        puts "Goodbye!"
+
+
+    end 
+
+
+
 
 end
 
 
 game = CPU.new()
-puts "Player 1:" 
-game.ask_question
-game.set_current_player
-game.ask_question
+game.play()
+
+# puts "#{current_player.name}:" 
+# game.ask_question
+# game.set_current_player
+# game.ask_question
 
 
 
